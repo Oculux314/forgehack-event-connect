@@ -1,18 +1,18 @@
 modules:
   macro:
-    - key: testing-hello-world-macro
+    - key: event-connect-hello-world
       resource: main
-      render: native
       resolver:
         function: resolver
-      title: testing-nate
+      title: event-connect
+      description: Inserts Hello world!
   function:
     - key: resolver
       handler: index.handler
 resources:
   - key: main
-    path: src/frontend/index.jsx
+    path: static/hello-world/build
 app:
   runtime:
     name: nodejs18.x
-  id: ari:cloud:ecosystem::app/e093823b-bdaf-4718-a5ae-6436a43bf1b2
+  id: ari:cloud:ecosystem::app/eaf260e4-ff73-476a-a00f-cc421922aa68
