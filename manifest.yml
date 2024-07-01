@@ -1,3 +1,8 @@
+permissions:
+  scopes:
+    - read:confluence-user
+    - storage:app
+
 modules:
   macro:
     - key: event-connect-hello-world
@@ -9,9 +14,11 @@ modules:
   function:
     - key: resolver
       handler: index.handler
+
 resources:
   - key: main
     path: static/hello-world/build
+
 app:
   runtime:
     name: nodejs18.x

@@ -62,6 +62,25 @@ function App() {
     transform: hover ? 'scale(1.05)' : 'scale(1)',
     marginTop: '20px'
   };
+
+
+  useEffect(()=>{
+    async function getUserInfo() {
+      try {
+  
+        const data = await invoke('getUserInfo');
+        setOptions(data)
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    }
+    getUserInfo();
+  },[])
+
+  const handleSubmit=()=>{
+    invoke('setUserInfo', { data: options });
+  }
+
   return (
     <div style={containerStyle}>
       <h2 style={titleStyle}>Causes that Interest You</h2>
@@ -83,6 +102,7 @@ function App() {
         style={submitButtonStyle}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
+        onClick={handleSubmit}
       >
         Submit
       </button>
