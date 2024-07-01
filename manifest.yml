@@ -1,0 +1,18 @@
+modules:
+  macro:
+    - key: testing-hello-world-macro
+      resource: main
+      render: native
+      resolver:
+        function: resolver
+      title: testing-nate
+  function:
+    - key: resolver
+      handler: index.handler
+resources:
+  - key: main
+    path: src/frontend/index.jsx
+app:
+  runtime:
+    name: nodejs18.x
+  id: ari:cloud:ecosystem::app/e093823b-bdaf-4718-a5ae-6436a43bf1b2
