@@ -1,17 +1,24 @@
+permissions:
+  scopes:
+    - read:confluence-user
+    - storage:app
+
 modules:
   macro:
-    - key: event-connect-hello-world
-      resource: main
+    - key: dashboard
+      resource: dashboard-cra
       resolver:
         function: resolver
-      title: event-connect
-      description: Inserts Hello world!
+      title: Dashboard
+      description: Dashboard to select causes that interest you.
   function:
     - key: resolver
-      handler: index.handler
+      handler: resolvers.handler
+
 resources:
-  - key: main
-    path: static/hello-world/build
+  - key: dashboard-cra
+    path: src/dashboard/build
+
 app:
   runtime:
     name: nodejs18.x
