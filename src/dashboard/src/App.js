@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { invoke } from '@forge/bridge';
 function App() {
-  // const [data, setData] = useState(null);
-  // useEffect(() => {
-  //   invoke('getText', { example: 'my-invoke-variable' }).then(setData);
-  // }, []);
-  const [hover, setHover] = useState(false);
+  const [shouldSubmit, setShouldSubmit] = useState(false);
+  const [showSavedMessage, setShowSavedMessage] = useState(false);
+  const timerRef = useRef(null);
   const [options, setOptions] = useState([
     { category: "Poverty", chosen: false },
     { category: "Education", chosen: false },
@@ -33,7 +31,24 @@ function App() {
         i === index ? { ...item, chosen: !item.chosen } : item
       )
     );
+    setShouldSubmit(true);
+
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+
+    setShowSavedMessage(true);
+    timerRef.current = setTimeout(() => {
+      setShowSavedMessage(false);
+    }, 3000);
   };
+
+  useEffect(() => {
+    if (shouldSubmit) {
+      handleSubmit();
+      setShouldSubmit(false);
+    }
+  }, [shouldSubmit]);
 
   const containerStyle = {
     display: 'flex',
@@ -60,31 +75,18 @@ function App() {
     cursor: 'pointer',
     transition: 'background-color 0.3s'
   })
-  const submitButtonStyle = {
-    backgroundColor: 'pink',
-    color: 'white',
-    padding: '15px 32px',
-    fontSize: '16px',
-    border: 'none',
-    borderRadius: '8px',
-    cursor: 'pointer',
-    transition: 'all 0.3s ease',
-    transform: hover ? 'scale(1.05)' : 'scale(1)',
-    marginTop: '20px'
-  };
-
 
   useEffect(() => {
     async function getUserInfo() {
       try {
 
         const data = await invoke('getUserInfo');
-        const tempOptions=data.options
-        const tempCities=data.cities
-        if(tempOptions){
+        const tempOptions = data.options
+        const tempCities = data.cities
+        if (tempOptions) {
           setOptions(tempOptions)
         }
-        if(tempCities){
+        if (tempCities) {
           setCities(tempCities)
         }
       } catch (error) {
@@ -129,14 +131,7 @@ function App() {
           ))
         }
       </div>
-      <button
-        style={submitButtonStyle}
-        onMouseEnter={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
-        onClick={handleSubmit}
-      >
-        Submit
-      </button>
+      {showSavedMessage && <div>Saved</div>}
     </div>
   );
 };
