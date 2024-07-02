@@ -50,6 +50,24 @@ app:
   id: ari:cloud:ecosystem::app/eaf260e4-ff73-476a-a00f-cc421922aa68
   storage:
     entities:
+      - name: initiatives
+        attributes:
+          name:
+            type: string
+          description:
+            type: string
+          url:
+            type: string
+          date:
+            type: string
+          time:
+            type: string
+          venue:
+            type: string
+          city:
+            type: string
+          category:
+            type: string
       - name: events
         attributes:
           name:
