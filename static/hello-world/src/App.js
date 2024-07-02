@@ -36,22 +36,22 @@ function App() {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    maxWidth: '480px'  
+    maxWidth: '480px'
   }
   const buttonStyle=(option)=>({
-    backgroundColor: option.chosen ? '#555' : '#4CAF50', 
+    backgroundColor: option.chosen ? '#555' : '#4CAF50',
     color: 'white',
-    width: '150px', 
-    height: '50px', 
+    width: '150px',
+    height: '50px',
     fontSize: '16px',
     border: 'none',
-    borderRadius: '40px', 
-    margin: '5px',  
+    borderRadius: '40px',
+    margin: '5px',
     cursor: 'pointer',
-    transition: 'background-color 0.3s' 
+    transition: 'background-color 0.3s'
   })
   const submitButtonStyle = {
-    backgroundColor: '#008CBA',
+    backgroundColor: 'red',
     color: 'white',
     padding: '15px 32px',
     fontSize: '16px',
@@ -67,7 +67,7 @@ function App() {
   useEffect(()=>{
     async function getUserInfo() {
       try {
-  
+
         const data = await invoke('getUserInfo');
         setOptions(data)
       } catch (error) {
@@ -96,7 +96,7 @@ function App() {
             </button>
           ))
         }
-        
+
       </div>
       <button
         style={submitButtonStyle}
