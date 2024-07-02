@@ -12,20 +12,20 @@ modules:
   function:
     - key: resolver
       handler: resolvers.handler
-  macro:
+  confluence:globalPage:
     - key: dashboard
       resource: dashboard-cra
+      title: Seeker Dashboard
+      route: preferences
       resolver:
         function: resolver
-      title: Seeker Dashboard
-      description: Dashboard to select causes that interest you.
   confluence:homepageFeed:
     - key: home
       resource: home-cra
-      resolver:
-        function: resolver
       title: Seeker
       description: Preview your Seeker selections.
+      resolver:
+        function: resolver
 resources:
   - key: dashboard-cra
     path: src/dashboard/build
