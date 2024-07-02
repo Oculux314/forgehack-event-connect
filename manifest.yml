@@ -4,6 +4,9 @@ permissions:
     - storage:app
 
 modules:
+  function:
+    - key: resolver
+      handler: resolvers.handler
   macro:
     - key: dashboard
       resource: dashboard-cra
@@ -11,10 +14,13 @@ modules:
         function: resolver
       title: Dashboard
       description: Dashboard to select causes that interest you.
-  function:
-    - key: resolver
-      handler: resolvers.handler
-
+  confluence:homepageFeed:
+    - key: home
+      resource: dashboard-cra
+      resolver:
+        function: resolver
+      title: Home
+      description: Click here to see your dashboard.
 resources:
   - key: dashboard-cra
     path: src/dashboard/build
