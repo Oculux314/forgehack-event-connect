@@ -53,3 +53,37 @@ button {
 button:hover {
   background-color: #003D99;
 }
+
+button:active {
+  background-color: #002966;
+  transition: none;
+}
+
+.popout__div {
+  display: flex;
+  height: 2em;
+  gap: 0.2em;
+}
+
+.popout__button {
+  float: right;
+  width: 2em;
+  background-color: #999;
+  padding: 0;
+}
+
+.popout__button:hover {
+  background-color: #444;
+}
+
+.popout__button:active {
+  background-color: #333;
+}
+
+img {
+  width: 80%;
+  height: auto;
+  position: relative;
+  bottom: -0.15em;
+  left: 0em;
+}
