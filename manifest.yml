@@ -2,22 +2,35 @@ permissions:
   scopes:
     - read:confluence-user
     - storage:app
+  external:
+    fonts:
+      - 'https://fonts.gstatic.com/'
+    styles:
+      - 'https://fonts.googleapis.com/css2'
 
 modules:
-  confluence:globalPage:
-    - key: dashboard
-      resource: dashboard-cra
-      resolver:
-        function: resolver
-      title: Dashboard
-      route: preferences
   function:
     - key: resolver
       handler: resolvers.handler
-
+  confluence:globalPage:
+    - key: dashboard
+      resource: dashboard-cra
+      title: Seeker Dashboard
+      route: preferences
+      resolver:
+        function: resolver
+  confluence:homepageFeed:
+    - key: home
+      resource: home-cra
+      title: Seeker
+      description: Preview your Seeker selections.
+      resolver:
+        function: resolver
 resources:
   - key: dashboard-cra
     path: src/dashboard/build
+  - key: home-cra
+    path: src/home/build
 
 app:
   runtime:
