@@ -11,6 +11,7 @@ export function defineGetUserInfo(resolver) {
       });
     const userData = await response.json();
     const accountId = userData.accountId;
+    const email=userData.email;
     try {
       let userData = await storage.get(accountId);
       if (!userData) {
@@ -34,7 +35,7 @@ export function defineGetUserInfo(resolver) {
           { city: "Brisbane", chosen: false },
         ]
 
-        await storage.set(accountId, {options:options,cities:cities});
+        await storage.set(accountId, {options:options,cities:cities,email:email});
 
         userData = await storage.get(accountId);
       }
