@@ -2,6 +2,10 @@ permissions:
   scopes:
     - read:confluence-user
     - storage:app
+  external:
+    fetch:
+      backend:
+        - 'https://api.sendgrid.com/v3/'
 
 modules:
   confluence:globalPage:
@@ -14,6 +18,15 @@ modules:
   function:
     - key: resolver
       handler: resolvers.handler
+    - key: scheduled-trigger
+      handler: triggers.scheduledTrigger
+  webtrigger:
+    - key: temporary-development-webtrigger
+      function: scheduled-trigger
+  scheduledTrigger:
+    - key: scheduled-trigger-email
+      function: scheduled-trigger
+      interval: hour
 
 resources:
   - key: dashboard-cra
