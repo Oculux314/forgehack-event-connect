@@ -4,13 +4,13 @@ permissions:
     - storage:app
 
 modules:
-  macro:
+  confluence:globalPage:
     - key: dashboard
       resource: dashboard-cra
       resolver:
         function: resolver
       title: Dashboard
-      description: Dashboard to select causes that interest you.
+      route: preferences
   function:
     - key: resolver
       handler: resolvers.handler
