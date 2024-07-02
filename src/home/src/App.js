@@ -1,10 +1,12 @@
 import { invoke, router } from "@forge/bridge";
 import { useEffect, useState } from "react";
 import { initialCauses, initialLocations } from "./initialState";
+import { Selection } from "./Selection";
 
 function App() {
   const [causes, setCauses] = useState(initialCauses);
   const [locations, setLocations] = useState(initialLocations);
+  const [isEdit, setIsEdit] = useState(false)
 
   /* - Initial Data - */
 
@@ -50,31 +52,47 @@ function App() {
     );
   }
 
+  const handleEdit = () => {
+    setIsEdit((isEdit) => !isEdit)
+  }
+
   return (
-    <>
-      <table>
-        <thead>
-          <tr>
-            <th colSpan={2}>Current Selections</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <span className="left">Causes</span>
-            </td>
-            <td>{causesToString(causes)}</td>
-          </tr>
-          <tr>
-            <td>
-              <span className="left">Locations</span>
-            </td>
-            <td>{locationsToString(locations)}</td>
-          </tr>
-        </tbody>
-      </table>
-      <button onClick={goToDashboard}>Edit Selections</button>
-    </>
+
+    isEdit ?
+      (
+        <>
+          <Selection causes={causes} setCauses={setCauses} locations={locations} setLocations={setLocations}/>
+          <button onClick={handleEdit}>Submit Selections</button>
+        </>
+      )
+      :
+      (
+        <>
+          <table>
+            <thead>
+              <tr>
+                <th colSpan={2}>Current Selections</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <span className="left">Causes</span>
+                </td>
+                <td>{causesToString(causes)}</td>
+              </tr>
+              <tr>
+                <td>
+                  <span className="left">Locations</span>
+                </td>
+                <td>{locationsToString(locations)}</td>
+              </tr>
+            </tbody>
+          </table>
+          <button onClick={handleEdit}>Edit Selections</button>
+        </>
+      )
+
   );
 }
 
