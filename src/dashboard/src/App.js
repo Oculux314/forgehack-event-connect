@@ -51,7 +51,7 @@ function App() {
     transition: 'background-color 0.3s'
   })
   const submitButtonStyle = {
-    backgroundColor: 'red',
+    backgroundColor: 'pink',
     color: 'white',
     padding: '15px 32px',
     fontSize: '16px',

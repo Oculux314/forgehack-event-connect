@@ -5,10 +5,9 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "npm i && cd static/hello-world && npm i && npm run build",
-    "dev": "forge tunnel",
-    "lint": "eslint . --fix",
-    "deploy": "npm run build && forge deploy"
+    "deploy": "forge deploy",
+    "deploy:dashboard": "cd src/dashboard && npm run build && cd ../.. && npm run deploy",
+    "lint": "eslint . --fix"
   },
   "devDependencies": {
     "eslint": "^8.56.0",
