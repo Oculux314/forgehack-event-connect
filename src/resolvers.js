@@ -1,6 +1,6 @@
 import Resolver from "@forge/resolver";
 import { defineGetUserInfo } from "./resolvers/getUserInfo";
-import { defineSetUserInfo } from "./resolvers/setUserInfo";
+import { defineSetUserInfo} from "./resolvers/setUserInfo";
 
 export const resolver = new Resolver();
 
