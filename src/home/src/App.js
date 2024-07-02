@@ -46,12 +46,6 @@ function App() {
 
   /* - Routing - */
 
-  async function goToDashboard() {
-    await router.open(
-      "https://atl-forge-hack-team-2.atlassian.net/wiki/apps/eaf260e4-ff73-476a-a00f-cc421922aa68/9be46305-b0c9-4fe8-b67d-c4f97e26f7ec/preferences"
-    );
-  }
-
   const handleEdit = () => {
     setIsEdit((isEdit) => !isEdit)
   }
