@@ -23,8 +23,7 @@ export function defineGetUserInfo(resolver) {
           { category: "Animals", chosen: false },
           { category: "Human Rights", chosen: false },
           { category: "Disaster Relief", chosen: false },
-          { category: "Global Warming", chosen: false },
-          { category: "Mental Health", chosen: false },
+          { category: "Global Warming", chosen: false }
         ];
         const cities=[
           { city: "Sydney", chosen: false },
