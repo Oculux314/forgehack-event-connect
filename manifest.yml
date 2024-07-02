@@ -3,6 +3,11 @@ permissions:
     - read:confluence-user
     - storage:app
   external:
+
+    fetch:
+      backend:
+        - 'https://api.sendgrid.com/v3/'
+
     fonts:
       - 'https://fonts.gstatic.com/'
     styles:
@@ -26,6 +31,20 @@ modules:
       description: Preview your Seeker selections.
       resolver:
         function: resolver
+      title: Dashboard
+      route: preferences
+  function:
+    - key: resolver
+      handler: resolvers.handler
+    - key: scheduled-trigger
+      handler: triggers.scheduledTrigger
+  webtrigger:
+    - key: temporary-development-webtrigger
+      function: scheduled-trigger
+  scheduledTrigger:
+    - key: scheduled-trigger-email
+      function: scheduled-trigger
+      interval: hour
 resources:
   - key: dashboard-cra
     path: src/dashboard/build
