@@ -12,18 +12,20 @@ modules:
       resource: dashboard-cra
       resolver:
         function: resolver
-      title: Dashboard
+      title: Seeker Dashboard
       description: Dashboard to select causes that interest you.
   confluence:homepageFeed:
     - key: home
-      resource: dashboard-cra
+      resource: home-cra
       resolver:
         function: resolver
-      title: Home
-      description: Click here to see your dashboard.
+      title: Seeker
+      description: Preview your Seeker selections.
 resources:
   - key: dashboard-cra
     path: src/dashboard/build
+  - key: home-cra
+    path: src/home/build
 
 app:
   runtime:
