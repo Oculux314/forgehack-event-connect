@@ -25,8 +25,16 @@ export function defineGetUserInfo(resolver) {
           { category: "Global Warming", chosen: false },
           { category: "Mental Health", chosen: false },
         ];
+        const cities=[
+          { city: "Sydney", chosen: false },
+          { city: "Melbourne", chosen: false },
+          { city: "Canberra", chosen: false },
+          { city: "Perth", chosen: false },
+          { city: "Adelaide", chosen: false },
+          { city: "Brisbane", chosen: false },
+        ]
 
-        await storage.set(accountId, options);
+        await storage.set(accountId, {options:options,cities:cities});
 
         userData = await storage.get(accountId);
       }

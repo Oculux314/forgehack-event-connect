@@ -18,27 +18,37 @@ function App() {
     { category: "Mental Health", chosen: false }
   ]);
 
- const handleClick = (index) => {
-    setOptions(prevOptions =>
-      prevOptions.map((option, i) =>
-        i === index ? { ...option, chosen: !option.chosen } : option
+  const [cities, setCities] = useState([
+    { city: "Sydney", chosen: false },
+    { city: "Melbourne", chosen: false },
+    { city: "Canberra", chosen: false },
+    { city: "Perth", chosen: false },
+    { city: "Adelaide", chosen: false },
+    { city: "Brisbane", chosen: false },
+  ]);
+
+  const handleClick = (index, setter) => {
+    setter(prevItem =>
+      prevItem.map((item, i) =>
+        i === index ? { ...item, chosen: !item.chosen } : item
       )
     );
   };
-  const containerStyle={
+
+  const containerStyle = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     marginBottom: '20px'
   }
-  const titleStyle={ color: '#4CAF50', margin: '20px 0' }
-  const gridStyle={
+  const titleStyle = { color: '#4CAF50', margin: '20px 0' }
+  const gridStyle = {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
     maxWidth: '480px'
   }
-  const buttonStyle=(option)=>({
+  const buttonStyle = (option) => ({
     backgroundColor: option.chosen ? '#555' : '#4CAF50',
     color: 'white',
     width: '150px',
@@ -64,21 +74,28 @@ function App() {
   };
 
 
-  useEffect(()=>{
+  useEffect(() => {
     async function getUserInfo() {
       try {
 
         const data = await invoke('getUserInfo');
-        setOptions(data)
+        const tempOptions=data.options
+        const tempCities=data.cities
+        if(tempOptions){
+          setOptions(tempOptions)
+        }
+        if(tempCities){
+          setCities(tempCities)
+        }
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
     }
     getUserInfo();
-  },[])
+  }, [])
 
-  const handleSubmit=()=>{
-    invoke('setUserInfo', { data: options });
+  const handleSubmit = () => {
+    invoke('setUserInfo', { options: options, cities: cities });
   }
 
   return (
@@ -89,7 +106,7 @@ function App() {
           options.map((option, index) => (
             <button
               key={index}
-              onClick={() => handleClick(index)}
+              onClick={() => handleClick(index, setOptions)}
               style={buttonStyle(option)}
             >
               {option.category}
@@ -97,6 +114,20 @@ function App() {
           ))
         }
 
+      </div>
+      <h2 style={titleStyle}>Cities Available</h2>
+      <div style={gridStyle}>
+        {
+          cities.map((city, index) => (
+            <button
+              key={index}
+              onClick={() => handleClick(index, setCities)}
+              style={buttonStyle(city)}
+            >
+              {city.city}
+            </button>
+          ))
+        }
       </div>
       <button
         style={submitButtonStyle}
