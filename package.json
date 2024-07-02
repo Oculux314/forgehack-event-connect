@@ -1,13 +1,15 @@
 {
-  "name": "confluence-macro-custom-ui",
+  "name": "seeker",
   "version": "1.0.47",
   "main": "index.js",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "setup": "npm i && cd src/dashboard && npm i",
-    "deploy": "forge deploy",
-    "deploy:dashboard": "cd src/dashboard && npm run build && cd ../.. && npm run deploy",
+    "setup": "npm i && cd src/dashboard && npm i && cd ../home && npm i",
+    "deploy": "cd src/dashboard && npm run build && cd ../../src/home && npm run build && cd ../.. && forge deploy",
+    "deploy:dashboard": "cd src/dashboard && npm run build && cd ../.. && forge deploy",
+    "deploy:home": "cd src/home && npm run build && cd ../.. && forge deploy",
+    "deploy:dev": "forge deploy -e development",
     "lint": "eslint . --fix"
   },
   "devDependencies": {

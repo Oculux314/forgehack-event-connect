@@ -1,8 +1,11 @@
-import React, { useEffect, useState, useRef } from 'react';
 import { invoke } from '@forge/bridge';
+import React, { useEffect, useRef, useState } from 'react';
 function App() {
   const [shouldSubmit, setShouldSubmit] = useState(false);
   const [showSavedMessage, setShowSavedMessage] = useState(false);
+  const [hoveredOptionIndex, setHoveredOptionIndex] = useState(null);
+  const [hoveredCityIndex, setHoveredCityIndex] = useState(null);
+
   const timerRef = useRef(null);
   const [options, setOptions] = useState([
     { category: "Poverty", chosen: false },
@@ -31,6 +34,7 @@ function App() {
         i === index ? { ...item, chosen: !item.chosen } : item
       )
     );
+
     setShouldSubmit(true);
 
     if (timerRef.current) {
@@ -56,15 +60,15 @@ function App() {
     alignItems: 'center',
     marginBottom: '20px'
   }
-  const titleStyle = { color: '#4CAF50', margin: '20px 0' }
+  const titleStyle = { color: '#0052CC', margin: '20px 0' }
   const gridStyle = {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
     maxWidth: '480px'
   }
-  const buttonStyle = (option) => ({
-    backgroundColor: option.chosen ? '#555' : '#4CAF50',
+  const buttonStyle = (option,isHover) => ({
+    backgroundColor: option.chosen ? (isHover ? '#00B8D9' : '#0052CC') : (isHover ? '#97A0AF' : '#555'),
     color: 'white',
     width: '150px',
     height: '50px',
@@ -73,7 +77,7 @@ function App() {
     borderRadius: '40px',
     margin: '5px',
     cursor: 'pointer',
-    transition: 'background-color 0.3s'
+    transition: 'background-color 0.3s ease-out'
   })
 
   useEffect(() => {
@@ -83,6 +87,7 @@ function App() {
         const data = await invoke('getUserInfo');
         const tempOptions = data.options
         const tempCities = data.cities
+
         if (tempOptions) {
           setOptions(tempOptions)
         }
@@ -102,14 +107,16 @@ function App() {
 
   return (
     <div style={containerStyle}>
-      <h2 style={titleStyle}>Causes that Interest You</h2>
+      <h2 style={titleStyle}>Causes That Interest You</h2>
       <div style={gridStyle}>
         {
           options.map((option, index) => (
             <button
               key={index}
               onClick={() => handleClick(index, setOptions)}
-              style={buttonStyle(option)}
+              style={buttonStyle(option,hoveredOptionIndex==index)}
+              onMouseEnter={() => setHoveredOptionIndex(index)}
+              onMouseLeave={() => setHoveredOptionIndex(null)}
             >
               {option.category}
             </button>
@@ -124,7 +131,9 @@ function App() {
             <button
               key={index}
               onClick={() => handleClick(index, setCities)}
-              style={buttonStyle(city)}
+              style={buttonStyle(city,hoveredCityIndex==index)}
+              onMouseEnter={() => setHoveredCityIndex(index)}
+              onMouseLeave={() => setHoveredCityIndex(null)}
             >
               {city.city}
             </button>
