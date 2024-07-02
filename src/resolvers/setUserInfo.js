@@ -33,8 +33,7 @@ export function defineSetUserInfo(resolver) {
       if (!isSubscribed) {
         subscribedUsers.push(accountId);
       }
-      console.log(subscribedUsers);
-      await storage.set("subscribedUsers", subscribedUsers);
+      await storage.set("subscribedUsers", subscribedUsers)
     } catch (error) {
       console.error("Error fetching or setting user data:", error);
       throw error;
