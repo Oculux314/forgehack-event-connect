@@ -5,6 +5,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "setup": "npm i && cd src/dashboard && npm i",
     "deploy": "forge deploy",
     "deploy:dashboard": "cd src/dashboard && npm run build && cd ../.. && npm run deploy",
     "lint": "eslint . --fix"
