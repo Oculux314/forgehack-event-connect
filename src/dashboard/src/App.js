@@ -60,7 +60,7 @@ function App() {
     alignItems: 'center',
     marginBottom: '20px'
   }
-  const titleStyle = { color: '#36B37E', margin: '20px 0' }
+  const titleStyle = { color: '#0052CC', margin: '20px 0' }
   const gridStyle = {
     display: 'flex',
     flexWrap: 'wrap',
@@ -107,7 +107,7 @@ function App() {
 
   return (
     <div style={containerStyle}>
-      <h2 style={titleStyle}>Causes that Interest You</h2>
+      <h2 style={titleStyle}>Causes That Interest You</h2>
       <div style={gridStyle}>
         {
           options.map((option, index) => (
