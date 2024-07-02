@@ -56,7 +56,7 @@ export function Selection({ causes, setCauses, locations, setLocations }) {
         margin: '1.5%',
         cursor: 'pointer',
         transition: 'background-color 0.3s ease-out',
-        paddingTop: '3px', 
+        paddingTop: '3px',
         paddingBottom: '3px',
     })
 

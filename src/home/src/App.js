@@ -1,12 +1,13 @@
 import { invoke, router } from "@forge/bridge";
 import { useEffect, useState } from "react";
-import { initialCauses, initialLocations } from "./initialState";
 import { Selection } from "./Selection";
+import ToggleButton from "./ToggleButton";
+import { initialCauses, initialLocations } from "./initialState";
 
 function App() {
   const [causes, setCauses] = useState(initialCauses);
   const [locations, setLocations] = useState(initialLocations);
-  const [isEdit, setIsEdit] = useState(false)
+  const [isEdit, setIsEdit] = useState(false);
 
   /* - Initial Data - */
 
@@ -47,46 +48,47 @@ function App() {
   /* - Routing - */
 
   const handleEdit = () => {
-    setIsEdit((isEdit) => !isEdit)
-  }
+    setIsEdit((isEdit) => !isEdit);
+  };
 
   return (
-
-    isEdit ?
-      (
-        <>
-          <Selection causes={causes} setCauses={setCauses} locations={locations} setLocations={setLocations}/>
-          <button onClick={handleEdit}>Submit Selections</button>
-        </>
-      )
-      :
-      (
-        <>
-          <table>
-            <thead>
-              <tr>
-                <th colSpan={2}>Current Selections</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <span className="left">Causes</span>
-                </td>
-                <td>{causesToString(causes)}</td>
-              </tr>
-              <tr>
-                <td>
-                  <span className="left">Locations</span>
-                </td>
-                <td>{locationsToString(locations)}</td>
-              </tr>
-            </tbody>
-          </table>
-          <button onClick={handleEdit}>Edit Selections</button>
-        </>
-      )
-
+    <>
+      {isEdit ? (
+        <Selection
+          causes={causes}
+          setCauses={setCauses}
+          locations={locations}
+          setLocations={setLocations}
+        />
+      ) : (
+        <table>
+          <thead>
+            <tr>
+              <th colSpan={2}>Current Selections</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <span className="left">Causes</span>
+              </td>
+              <td>{causesToString(causes)}</td>
+            </tr>
+            <tr>
+              <td>
+                <span className="left">Locations</span>
+              </td>
+              <td>{locationsToString(locations)}</td>
+            </tr>
+          </tbody>
+        </table>
+      )}
+      <ToggleButton
+        isEdit={isEdit}
+        handleEdit={handleEdit}
+        goToDashboard={goToDashboard}
+      />
+    </>
   );
 }
 
