@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useRef } from 'react';
 import { invoke } from '@forge/bridge';
+import React, { useEffect, useRef, useState } from 'react';
 function App() {
   const [shouldSubmit, setShouldSubmit] = useState(false);
   const [showSavedMessage, setShowSavedMessage] = useState(false);
@@ -77,7 +77,7 @@ function App() {
     borderRadius: '40px',
     margin: '5px',
     cursor: 'pointer',
-    transition: 'background-color 0.3s'
+    transition: 'background-color 0.3s ease-out'
   })
 
   useEffect(() => {
