@@ -17,3 +17,7 @@ p {
 .grey {
   color: grey;
 }
+
+button {
+  margin-bottom: 0;
+}

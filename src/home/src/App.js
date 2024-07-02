@@ -1,4 +1,4 @@
-import { invoke } from "@forge/bridge";
+import { invoke, router } from "@forge/bridge";
 import { useEffect, useState } from "react";
 import { initialCauses, initialLocations } from "./initialState";
 
@@ -42,12 +42,18 @@ function App() {
     return locationString ?? noneSelected;
   }
 
+  /* - Routing - */
+
+  async function goToDashboard() {
+    await router.open("https://www.youtube.com/watch?v=duPJqfKiA78");
+  }
+
   return (
     <>
       <h1>Current Selections</h1>
       <p>Causes: {causesToString(causes)}</p>
       <p>Locations: {locationsToString(locations)}</p>
-      <button>Edit Selections</button>
+      <button onClick={goToDashboard}>Edit Selections</button>
     </>
   );
 }
