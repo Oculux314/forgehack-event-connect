@@ -31,7 +31,7 @@ function App() {
       .filter((cause) => cause.chosen)
       .map((cause) => cause.category)
       .join(", ");
-    return causeString ?? noneSelected;
+    return causeString.length ? causeString : noneSelected;
   }
 
   function locationsToString(locations) {
@@ -39,20 +39,40 @@ function App() {
       .filter((loc) => loc.chosen)
       .map((loc) => loc.city)
       .join(", ");
-    return locationString ?? noneSelected;
+    return locationString.length ? locationString : noneSelected;
   }
 
   /* - Routing - */
 
   async function goToDashboard() {
-    await router.open("https://www.youtube.com/watch?v=duPJqfKiA78");
+    await router.open(
+      "https://atl-forge-hack-team-2.atlassian.net/wiki/apps/eaf260e4-ff73-476a-a00f-cc421922aa68/8e66a467-6138-4c6e-9ca5-bce9a61e0e10/preferences"
+    );
   }
 
   return (
     <>
-      <h1>Current Selections</h1>
-      <p>Causes: {causesToString(causes)}</p>
-      <p>Locations: {locationsToString(locations)}</p>
+      <table>
+        <thead>
+          <tr>
+            <th colSpan={2}>Current Selections</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <span className="left">Causes</span>
+            </td>
+            <td>{causesToString(causes)}</td>
+          </tr>
+          <tr>
+            <td>
+              <span className="left">Locations</span>
+            </td>
+            <td>{locationsToString(locations)}</td>
+          </tr>
+        </tbody>
+      </table>
       <button onClick={goToDashboard}>Edit Selections</button>
     </>
   );

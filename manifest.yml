@@ -2,6 +2,11 @@ permissions:
   scopes:
     - read:confluence-user
     - storage:app
+  external:
+    fonts:
+      - 'https://fonts.gstatic.com/'
+    styles:
+      - 'https://fonts.googleapis.com/css2'
 
 modules:
   function:

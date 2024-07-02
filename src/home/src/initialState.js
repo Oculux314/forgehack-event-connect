@@ -1,10 +1,10 @@
 export const initialCauses = [
   { category: "Poverty", chosen: false },
-  { category: "Education", chosen: true },
+  { category: "Education", chosen: false },
   { category: "Medical", chosen: false },
   { category: "Environment", chosen: false },
   { category: "Animals", chosen: false },
-  { category: "Human Rights", chosen: true },
+  { category: "Human Rights", chosen: false },
   { category: "Disaster Relief", chosen: false },
   { category: "Global Warming", chosen: false },
   { category: "Mental Health", chosen: false },
@@ -12,9 +12,9 @@ export const initialCauses = [
 
 export const initialLocations = [
   { city: "Sydney", chosen: false },
-  { city: "Melbourne", chosen: true },
+  { city: "Melbourne", chosen: false },
   { city: "Canberra", chosen: false },
-  { city: "Perth", chosen: true },
+  { city: "Perth", chosen: false },
   { city: "Adelaide", chosen: false },
   { city: "Brisbane", chosen: false },
 ];
