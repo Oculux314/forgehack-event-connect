@@ -83,6 +83,7 @@ function App() {
         const data = await invoke('getUserInfo');
         const tempOptions = data.options
         const tempCities = data.cities
+        console.log(data.email)
         if (tempOptions) {
           setOptions(tempOptions)
         }
