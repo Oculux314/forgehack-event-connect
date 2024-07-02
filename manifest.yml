@@ -23,7 +23,7 @@ modules:
   scheduledTrigger:
     - key: scheduled-trigger-email
       function: scheduled-trigger
-      interval: hour
+      interval: week
   confluence:globalPage:
     - key: dashboard
       resource: dashboard-cra
@@ -48,3 +48,31 @@ app:
   runtime:
     name: nodejs18.x
   id: ari:cloud:ecosystem::app/eaf260e4-ff73-476a-a00f-cc421922aa68
+  storage:
+    entities:
+      - name: events
+        attributes:
+          name:
+            type: string
+          description:
+            type: string
+          url:
+            type: string
+          date:
+            type: string
+          time:
+            type: string
+          venue:
+            type: string
+          city:
+            type: string
+          category:
+            type: string
+        indexes:
+          - category
+          - city
+          - name: by-city-per-category
+            partition:
+              - category
+            range:
+              - city
